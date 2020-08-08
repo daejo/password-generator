@@ -55,6 +55,101 @@ function lengthInput(){
   return passwordLength
 }
 
+function passwordLowercase(){ //Checking if lowercase letters will be included.
+  lowercasePass = prompt("Do you want to include uppercase letters in your password? \n(Yes or No)");
+    lowercasePass = lowercasePass.toLowerCase();
+
+    if (lowercasePass === null || lowercasePass === ""){
+      alert("Please answer Yes or No");
+      passwordLowercase();
+
+    }else if (lowercasePass === "yes" || lowercasePass ==="y"){
+      lowercasePass = true;
+      return lowercasePass;
+
+    }else if (lowercasePass === "no" || lowercasePass ==="n"){
+      lowercasePass = false;
+      return lowercasePass;
+    
+    }else {
+      alert("Please answer Yes or No");
+      passwordLowercase();
+    }
+    return lowercasePass;
+}
+
+
+function passwordUppercase(){ //Checking if uppercase letters will be included.
+  uppercasePass = prompt("Do you want to include uppercase letters in your password? \n(Yes or No)");
+    uppercasePass = uppercasePass.toLowerCase();
+
+    if (uppercasePass === null || uppercasePass === ""){
+      alert("Please answer Yes or No");
+      passwordUppercase();
+
+    }else if (uppercasePass === "yes" || uppercasePass ==="y"){
+      uppercasePass = true;
+      return uppercasePass;
+
+    }else if (uppercasePass === "no" || uppercasePass ==="n"){
+      uppercasePass = false;
+      return uppercasePass;
+    
+    }else {
+      alert("Please answer Yes or No");
+      passwordUppercase();
+    }
+    return uppercasePass;
+}
+
+
+//Function used to determine whether the user wants to include numbers in the password
+function passwordNumbers(){
+  numberPass = prompt("Do you want to include numbers in your password? \n(Yes or No)");
+    numberPass = numberPass.toLowerCase();
+
+    if (numberPass === null || numberPass === ""){
+      alert("Please answer Yes or No");
+      passwordNumbers();
+
+    }else if (numberPass === "yes" || numberPass ==="y"){
+      numberPass = true;
+      return numberPass;
+
+    }else if (numberPass === "no" || numberPass ==="n"){
+      numberPass = false;
+      return numberPass;
+    
+    }else {
+      alert("Please answer Yes or No");
+      passwordNumbers();
+    }
+    return numberPass;
+}
+
+// Determine whether the user wants to include symbols in the password
+function passwordSymbol(){
+  symbolPass = prompt("Do you want your password to include symbols \n(Yes or No)");
+    symbolPass = symbolPass.toLowerCase();
+
+    if (symbolPass === null || symbolPass === ""){
+      alert("Please answer Yes or No");
+      passwordSymbol();
+
+    }else if (symbolPass === "yes" || symbolPass ==="y"){
+      symbolPass = true;
+      return symbolPass;
+
+    }else if (symbolPass === "no" || symbolPass ==="n"){
+      symbolPass = false;
+      return symbolPass;
+    
+    }else {
+      alert("Please answer Yes or No");
+      passwordSymbol();
+    }
+    return symbolPass;
+}
 
 // Write password to the #password input
 function writePassword() {
