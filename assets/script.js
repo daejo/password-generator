@@ -1,12 +1,11 @@
 /*
 Random Password Generator
-  Click password generator
-  Welcome Alert pops
-  Input Character Length
-  Choose if you want to include lowercase, uppercase, numbers, and/or symbols  
-  Generate Password
-  Copy Password   
+  -Click password generator
+  -Input Character Length
+  -Choose if you want to include lowercase, uppercase, numbers, and/or symbols  
+  -Generate Password 
 */
+
 var generateBtn = document.querySelector("#generate");
 var lowercaseList = "abcdefghijklmnopqrstuvwxyz";
 var uppercaseList = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -18,24 +17,9 @@ var uppercasePass;
 var numberPass;
 var symbolPass;
 
-// Generator functions
-// var getRandomLower = function() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-// }
-// var getRandomUpper = function() {
-//   return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-// }
-// var getRandomNumber = function() {
-//   return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-// }
-// var getRandomSymbol = function() {
-//   const symbols = "\\ !\"#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-//   return symbols[Math.floor(Math.random() * symbols.length)];
-// }
-
-// Determines if the input length is within requirements.
+// Determines if the input length and if its within the requirements.
 function lengthInput(){
-  passwordLength = Number(prompt("Number of characters for your password MUST BE 8 TO 128 CHARACTERS"));
+  passwordLength = prompt("Type the number of characters you want for your password. MUST BE 8 TO 128 CHARACTERS");
 
   if (passwordLength < 8 ) { //Character is less than required parameters.
     alert("Invalid Input. Password must be equal to or greater than 8")
@@ -45,10 +29,10 @@ function lengthInput(){
     alert("Invalid Input. Password must be equal to or less than 128")
     lengthInput();
 
-  }else if (passwordLength === null) { //Input is empty.
+  }else if (passwordLength === undefined) { //Input is empty.
     alert("Invalid Input. Please provide a number between 8 to 128");
     lengthInput();
-
+  
   }else{
     alert("You will be prompted with character options to be included in your password");
   }  
@@ -56,7 +40,7 @@ function lengthInput(){
 }
 
 function passwordLowercase(){ //Checking if lowercase letters will be included.
-  lowercasePass = prompt("Do you want to include uppercase letters in your password? \n(Yes or No)");
+  lowercasePass = prompt("Do you want to include lowerrcase letters in your password? \n(Yes or No)");
     lowercasePass = lowercasePass.toLowerCase();
 
     if (lowercasePass === null || lowercasePass === ""){
@@ -65,17 +49,17 @@ function passwordLowercase(){ //Checking if lowercase letters will be included.
 
     }else if (lowercasePass === "yes" || lowercasePass ==="y"){
       lowercasePass = true;
-      return lowercasePass;
+
 
     }else if (lowercasePass === "no" || lowercasePass ==="n"){
       lowercasePass = false;
-      return lowercasePass;
+
     
     }else {
       alert("Please answer Yes or No");
       passwordLowercase();
     }
-    return lowercasePass;
+
 }
 
 
@@ -89,21 +73,20 @@ function passwordUppercase(){ //Checking if uppercase letters will be included.
 
     }else if (uppercasePass === "yes" || uppercasePass ==="y"){
       uppercasePass = true;
-      return uppercasePass;
+
 
     }else if (uppercasePass === "no" || uppercasePass ==="n"){
       uppercasePass = false;
-      return uppercasePass;
+
     
     }else {
       alert("Please answer Yes or No");
       passwordUppercase();
     }
-    return uppercasePass;
+
 }
 
-
-//Function used to determine whether the user wants to include numbers in the password
+//Checking if numbers will be included.
 function passwordNumbers(){
   numberPass = prompt("Do you want to include numbers in your password? \n(Yes or No)");
     numberPass = numberPass.toLowerCase();
@@ -114,20 +97,20 @@ function passwordNumbers(){
 
     }else if (numberPass === "yes" || numberPass ==="y"){
       numberPass = true;
-      return numberPass;
+
 
     }else if (numberPass === "no" || numberPass ==="n"){
       numberPass = false;
-      return numberPass;
+
     
     }else {
       alert("Please answer Yes or No");
       passwordNumbers();
     }
-    return numberPass;
+
 }
 
-// Determine whether the user wants to include symbols in the password
+//Checking if symbols will be included.
 function passwordSymbol(){
   symbolPass = prompt("Do you want your password to include symbols \n(Yes or No)");
     symbolPass = symbolPass.toLowerCase();
@@ -138,30 +121,83 @@ function passwordSymbol(){
 
     }else if (symbolPass === "yes" || symbolPass ==="y"){
       symbolPass = true;
-      return symbolPass;
+ 
 
     }else if (symbolPass === "no" || symbolPass ==="n"){
       symbolPass = false;
-      return symbolPass;
+
     
     }else {
       alert("Please answer Yes or No");
       passwordSymbol();
     }
-    return symbolPass;
+
 }
 
-// Write password to the #password input
+ // Consolidates all information to be processed for random generator 
+ function generatePassword(){
+  lengthInput();
+  console.log(passwordLength);
+  passwordLowercase();
+  console.log(lowercasePass);
+  passwordUppercase();
+  console.log(uppercasePass);
+  passwordNumbers();
+  console.log(numberPass);
+  passwordSymbol();
+  console.log(symbolPass);
+
+// if else statements to figure out the combination of charaters to be used 
+var characters = "";
+var password = "";
+if (lowercasePass && uppercasePass && numberPass && symbolPass){
+  characters += lowercaseList + uppercaseList + numberList + symbolList;
+
+}else if (lowercasePass && numberPass && symbolPass){
+  characters += lowercaseList + numberList + symbolList;
+
+}else if (uppercasePass && numberPass && symbolPass){
+  characters += uppercaseList + numberList + symbolList;
+
+}else if (uppercasePass && numberPass){
+  characters += uppercaseList + numberList;
+
+}else if (numberPass && symbolPass){
+  characters += numberList + symbolList;
+
+}else if (uppercasePass && symbolPass){
+  characters += uppercaseList + symbolList;
+
+}else if (lowercasePass){
+  characters += lowercaseList;
+
+}else if (uppercasePass){
+  characters += uppercaseList;
+
+}else if(numberPass){
+  characters += numberList;
+
+}else if (symbolPass){
+  characters += symbolList;
+
+}else{ //If no type of characters are selected it resets back to choosing process.
+  alert("Please type necessary options to continue");
+  generatePassword();  
+}
+
+  for(var i = 0; i < passwordLength; i++){
+    password += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return password;
+}
+
+// Writes password to the #password input
 function writePassword() {
   var password1 = "";
   password1 = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password1;
 }
-// function resetText(){
-//   document.getElementById("password").value = "Your Secure Password";
-// }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
