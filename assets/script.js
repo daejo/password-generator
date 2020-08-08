@@ -19,7 +19,7 @@ var symbolPass;
 
 // Determines if the input length and if its within the requirements.
 function lengthInput(){
-  passwordLength = prompt("Type the number of characters you want for your password. MUST BE 8 TO 128 CHARACTERS");
+  passwordLength = prompt("Type the number of characters you want for your password. \n(MUST BE 8 TO 128 CHARACTERS)");
 
   if (passwordLength < 8 ) { //Character is less than required parameters.
     alert("Invalid Input. Password must be equal to or greater than 8")
@@ -40,7 +40,7 @@ function lengthInput(){
 }
 
 function passwordLowercase(){ //Checking if lowercase letters will be included.
-  lowercasePass = prompt("Do you want to include lowerrcase letters in your password? \n(Yes or No)");
+  lowercasePass = prompt("Do you want to include lowercase letters in your password? \n(Yes or No)");
     lowercasePass = lowercasePass.toLowerCase();
 
     if (lowercasePass === null || lowercasePass === ""){
