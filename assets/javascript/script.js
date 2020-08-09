@@ -134,8 +134,8 @@ function passwordSymbol(){
 
 }
 
- // Consolidates all information to be processed for random generator 
- function generatePassword(){
+ // FUNCTION RUN 
+function generatePassword(){
   lengthInput();
   console.log(passwordLength);
   passwordLowercase();
@@ -148,55 +148,60 @@ function passwordSymbol(){
   console.log(symbolPass);
 
 // if else statements to figure out the combination of charaters to be used 
-var characters = "";
-var password = "";
-if (lowercasePass && uppercasePass && numberPass && symbolPass){
-  characters += lowercaseList + uppercaseList + numberList + symbolList;
+  var characters = "";
+  var password = "";
+  if (lowercasePass && uppercasePass && numberPass && symbolPass){
+    characters += lowercaseList + uppercaseList + numberList + symbolList;
 
-}else if (lowercasePass && numberPass && symbolPass){
-  characters += lowercaseList + numberList + symbolList;
+  }else if (lowercasePass && numberPass && symbolPass){
+    characters += lowercaseList + numberList + symbolList;
 
-}else if (uppercasePass && numberPass && symbolPass){
-  characters += uppercaseList + numberList + symbolList;
+  }else if (uppercasePass && numberPass && symbolPass){
+    characters += uppercaseList + numberList + symbolList;
 
-}else if (uppercasePass && numberPass){
-  characters += uppercaseList + numberList;
+  }else if (uppercasePass && numberPass){
+    characters += uppercaseList + numberList;
 
-}else if (numberPass && symbolPass){
-  characters += numberList + symbolList;
+  }else if (lowercasePass && numberPass){
+    characters += lowercaseList + numberList;
 
-}else if (uppercasePass && symbolPass){
-  characters += uppercaseList + symbolList;
+  }else if (lowercasePass && symbolPass){
+    characters += lowercaseList + symbolList;
 
-}else if (lowercasePass){
-  characters += lowercaseList;
+  }else if (numberPass && symbolPass){
+    characters += numberList + symbolList;
 
-}else if (uppercasePass){
-  characters += uppercaseList;
+  }else if (uppercasePass && symbolPass){
+    characters += uppercaseList + symbolList;
 
-}else if(numberPass){
-  characters += numberList;
+  }else if (lowercasePass){
+    characters += lowercaseList;
 
-}else if (symbolPass){
-  characters += symbolList;
+  }else if (uppercasePass){
+    characters += uppercaseList;
 
-}else{ //If no type of characters are selected it resets back to choosing process.
-  alert("Please type necessary options to continue");
-  generatePassword();  
-}
+  }else if(numberPass){
+    characters += numberList;
 
-  for(var i = 0; i < passwordLength; i++){
-    password += characters.charAt(Math.floor(Math.random() * characters.length));
+  }else if (symbolPass){
+    characters += symbolList;
+
+  }else{ //If no type of characters are selected it resets back to choosing process.
+    alert("Please type necessary options to continue");
+    generatePassword();  
   }
-  return password;
+
+    for(var i = 0; i < passwordLength; i++){
+      password += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return password;
 }
 
 // Writes password to the #password input
 function writePassword() {
-  var password1 = "";
-  password1 = generatePassword();
+  password = generatePassword();
   var passwordText = document.querySelector("#password");
-  passwordText.value = password1;
+  passwordText.value = password;
 }
 
 // Add event listener to generate button
